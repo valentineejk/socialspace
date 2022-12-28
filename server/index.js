@@ -9,6 +9,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import dotenv from 'dotenv'
 import { register } from './controllers/auth.js'
+import authRoutes from './routes/auth.js'
 
 dotenv.config();
 // CONFIGURATIONS
@@ -38,9 +39,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage});
 
-app.use('/auth/register', upload.single("picture"), /* A function that is being called from the auth.js
-file. */
-register)
+
+//ROUTES
+app.use('/auth/register', upload.single("picture"), register)
 
 //MONGO CONNECTION
 const PORT = process.env.PORT || 6001;
